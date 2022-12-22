@@ -1,0 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(236, 236, 236);
+}
+
+header{
+    padding: 0 1em;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-brand img{
+    height: 2em;
+}
+
+.tittle-container{
+    width: 100%;
+    background-color: rgb(233, 18, 58);
+    color: white;
+    height: 6em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:2em;
+    min-height: 90vh;
+}
+
+.chk-search-container{
+    padding: 0 2em;
+    gap:1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-group{
+    width: 100%;
+    gap:0.2em
+}
+
+.btn-group button{
+    background-color: white;
+}
+
+form{
+    width:100%;
+}
+
+.checkboxSize{
+    word-wrap: break-word;
+    background-color: white;
+}
+
+.cards-container{
+    width: 100%;
+    gap:1em;
+}
+
+.card{
+    border-radius: 0 2em;
+    height: 25em;
+    border: none;
+}
+.card-body{
+    padding:0 1em;
+}
+
+.card img{
+    padding: 1em;
+    border-radius: 0 2em;
+    height: 12em;
+    object-fit:cover;
+}
+
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  rgb(233, 18, 58);
+    height: 6em;
+    color: white;
+    padding: 2em;
+}
+
+.social-container{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wpp{
+    background-color: rgb(121, 255, 111);
+    color: black;
+}
+
+.ig{
+    background-color: rgb(255, 111, 209);
+    color: black;
+}
+
+.fb{
+    background-color: rgb(111, 219, 255);
+    color: black;
+}
+
+form{
+}
+
+@media (min-width:1024px){
+    .chk-search-container{
+        flex-direction: row;
+    }
+    form{
+        width: 25em;
+    }
+}
