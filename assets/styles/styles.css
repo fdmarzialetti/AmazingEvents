@@ -71,12 +71,13 @@ form{
 }
 
 .card{
+    margin:1em 0;
     border-radius: 0 2em;
     height: 25em;
     border: none;
 }
 .card-body{
-    padding:0 1em;
+    padding:0 1em 1em 1em;
 }
 
 .card img{
@@ -86,19 +87,20 @@ form{
     object-fit:cover;
 }
 
-
 footer{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     background-color:  rgb(233, 18, 58);
-    height: 6em;
+    height: 8em;
     color: white;
     padding: 2em;
+    gap:1em;
 }
 
 .social-container{
-    width: 10%;
+    width: 10em;
     display: flex;
     justify-content: space-between;
 }
@@ -119,6 +121,12 @@ footer{
 }
 
 form{
+}
+
+@media (min-width:768px){
+    footer{
+        flex-direction: row;
+    }
 }
 
 @media (min-width:1024px){
