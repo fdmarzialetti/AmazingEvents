@@ -129,22 +129,25 @@ footer{
     justify-content: space-between;
 }
 
-.wpp{
+.social-container button{
     border-radius: 40%;
-    background-color: rgb(121, 255, 111);
     color: black;
+}
+
+.social-container button:hover{
+    transform:scale(1.2);
+}
+
+.wpp{
+    background-color: rgb(121, 255, 111);
 }
 
 .ig{
-    border-radius: 40%;
     background-color: rgb(255, 111, 209);
-    color: black;
 }
 
 .fb{
-    border-radius: 40%;
     background-color: rgb(111, 219, 255);
-    color: black;
 }
 
 table,th,tr,td{
