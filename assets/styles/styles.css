@@ -83,9 +83,20 @@ form{
     border-radius: 0 2em;
     height: 25em;
     border: none;
+    border: 1px solid rgb(180, 180, 180);
 }
 .card-body{
     padding:0 1em 1em 1em;
+}
+
+.card-body .card-text{
+    max-height: 6em;
+    max-width: 100%;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card img{
@@ -94,6 +105,11 @@ form{
     height: 12em;
     object-fit:cover;
 }
+
+.card-detail{
+    height: 40em;
+}
+
 
 footer{
     display: flex;
@@ -151,6 +167,26 @@ table,th,tr,td{
     footer{
         flex-direction: row;
     }
+
+    .card-detail{
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 28em;
+        padding-top: 2em;
+        
+    }
+
+    .card-detail img {
+        height: 25em;
+        max-width: 28em;
+    }
+
+    .card-detail .card-body{
+        padding-top:0;
+        border-top: none;
+        max-width: 25em;
+    }
+
 }
 
 @media (min-width:1024px){
