@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 body{
     background-color: rgb(236, 236, 236);
 }
@@ -72,6 +73,12 @@ form{
     word-wrap: break-word;
     background-color: white;
 }
+
+.checkboxSize:focus{
+    word-wrap: break-word;
+    background-color: white !important;
+}
+
 
 .cards-container{
     width: 100%;
@@ -191,6 +198,11 @@ table,th,tr,td{
         padding-top:0;
         border-top: none;
         max-width: 25em;
+    }
+
+    footer{
+        height: 6em;
+        
     }
 
 }
