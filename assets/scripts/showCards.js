@@ -1,3 +1,4 @@
+const currentDate = events["currentDate"];
 
 function addCardTemplate(card){
     return `<div class="col col-md-6 col-lg-3">
@@ -20,22 +21,22 @@ function createTemplate(events){
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
     switch(pageName){
         case "Home":{
-            for(let e of events['events']){
+            for(let e of events){
                 template+=addCardTemplate(e);
             }
             return template;
         }
         case "Past Events":{
-            for(let e of events['events']){
-                if(e.date < events['currentDate']){
+            for(let e of events){
+                if(e.date < currentDate){
                     template+=addCardTemplate(e);
                 }
             }
             return template;
         }
         case "Upcomming Events":{
-            for(let e of events['events']){
-                if(e.date >= events['currentDate']){
+            for(let e of events){
+                if(e.date >= currentDate){
                     template+=addCardTemplate(e);
                 }
             }
@@ -45,4 +46,5 @@ function createTemplate(events){
 }
 
 let cardsContainer = document.getElementById("cards-container");
-cardsContainer.innerHTML=createTemplate(events);
+cardsContainer.innerHTML=createTemplate(events['events']);
+
