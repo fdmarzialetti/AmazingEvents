@@ -13,7 +13,7 @@ checkboxes.forEach(chk=>{
         //Crea el template.
         if(arrEventsFilter.length === 0){
             //Si no hay ningun filtro en check muestra todo.
-            cardsContainer.innerHTML=createTemplate(events['events']);
+            cardsContainer.innerHTML=createTemplate(data['events']);
         }  else{
             cardsContainer.innerHTML=createTemplate(arrEventsFilter); 
         }
