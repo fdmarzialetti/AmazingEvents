@@ -130,12 +130,12 @@ footer{
     justify-content: space-between;
 }
 
-.social-container button{
+.social-container a{
     border-radius: 40%;
     color: black;
 }
 
-.social-container button:hover{
+.social-container a:hover{
     transform:scale(1.2);
 }
 
