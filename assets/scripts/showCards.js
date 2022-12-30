@@ -1,4 +1,4 @@
-const currentDate = events["currentDate"];
+const currentDate = data["currentDate"];
 
 function addCardTemplate(card){
     return `<div class="col col-md-6 col-lg-3">
@@ -46,5 +46,5 @@ function createTemplate(events){
 }
 
 let cardsContainer = document.getElementById("cards-container");
-cardsContainer.innerHTML=createTemplate(events['events']);
+cardsContainer.innerHTML=createTemplate(data['events']);
 

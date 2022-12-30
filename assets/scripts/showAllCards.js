@@ -21,7 +21,7 @@ function createTemplate(events){
     return template;
 }
 
-cardsContainer.innerHTML=createTemplate(events);
+cardsContainer.innerHTML=createTemplate(data);
 
 
 
