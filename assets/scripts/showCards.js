@@ -17,7 +17,7 @@ function addCardTemplate(card){
 }
 
 function createTemplate(events){
-    let template=``;
+    let template="";
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
     switch(pageName){
         case "Home":{
