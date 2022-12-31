@@ -1,4 +1,4 @@
-const currentDate = data["currentDate"];
+
 
 function addCardTemplate(card){
     return `<div class="col col-md-6 col-lg-3">
@@ -17,8 +17,9 @@ function addCardTemplate(card){
 }
 
 function createTemplate(events){
-    let template="";
+    let currentDate = data['currentDate'];
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
+    let template="";
     switch(pageName){
         case "Home":{
             for(let e of events){
