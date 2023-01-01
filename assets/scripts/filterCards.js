@@ -7,14 +7,14 @@ checkboxes.forEach(chk=>{
         let arrFilteredEvents
         let cardsContainer = document.getElementById("cards-container");
         //Cuando un checkbox cambie de estado, completa un arreglo con los nombres de los checkbox checked.
-        arrCategories = Array.from(checkboxes).filter(c=>c.checked).map(c=>c.name)
-        //Filtra las cartas que compartan categoria con el arreglo de categorias.
-        arrFilteredEvents = data["events"].filter(event=>arrCategories.includes(event["category"]))
-        //Crea el template.
-        if(arrFilteredEvents.length === 0){
+        arrCategories = Array.from(checkboxes).filter(chk=>chk.checked).map(chk=>chk.name)
+        if(arrCategories.length === 0){
             //Si no hay ningun checkbox checked muestra todos los eventos.
             cardsContainer.innerHTML=createTemplate(data['events']);
         }  else{
+            //Filtra las cartas que compartan categoria con el arreglo de categorias.
+            //Crea el template.
+            arrFilteredEvents = data["events"].filter(event=>arrCategories.includes(event["category"]))
             cardsContainer.innerHTML=createTemplate(arrFilteredEvents); 
         }
     })
