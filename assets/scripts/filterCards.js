@@ -2,7 +2,7 @@ let checkboxes = document.querySelectorAll(".btn-check");
 
 //addEventListener a cada checkbox. 
 checkboxes.forEach(chk=>{
-    chk.addEventListener("change", e => {
+    chk.addEventListener("change", function(){
         let arrCategories
         let arrFilteredEvents
         let cardsContainer = document.getElementById("cards-container");
