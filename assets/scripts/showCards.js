@@ -14,7 +14,7 @@ function addCardTemplate(card){
             </div>`
 }
 
-function createTemplate(events){
+function createTemplateCards(events){
     let currentDate = data['currentDate'];
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
     let template="";
@@ -44,6 +44,10 @@ function createTemplate(events){
     }
 }
 
-let cardsContainer = document.getElementById("cards-container");
-cardsContainer.innerHTML=createTemplate(data['events']);
+function showCards(events){
+    let cardsContainer = document.getElementById("cards-container");
+    cardsContainer.innerHTML=createTemplateCards(events);
+}
+
+showCards(data["events"])
 
