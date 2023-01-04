@@ -7,7 +7,7 @@ function addCardTemplate(card){
                         <p class="card-text h-100">${card.description}</p>
                         <div class=" card-bottom d-flex justify-content-between align-items-center w-100">
                             <p class="m-0 fw-bold text-align-center">Price $${card.price}</p>
-                            <a href="./details.html" class="btn btn-danger">View more</a>
+                            <a href="./details.html?id=${card._id}" class="btn btn-danger">View more</a>
                         </div>
                     </div>
                 </div>

@@ -55,10 +55,12 @@ function showCheckbox(){
 
 //Renderiza los checkbox
 showCheckbox()
-//Agrega escuchador de eventos al searchbar y al grupo de checkboxes.
+//Agrega un escuchador de eventos al searchbar y al grupo de checkboxes.
 document.getElementById("searchBar").addEventListener("input", applyFilter);
 document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
 
+//ESTUDIAR
+//  objeto Set();
 
 
 
