@@ -26,7 +26,7 @@ function filterBySearch(events){
 }
 //Aplica las filtros de checkbox y search.
 function applyFilter(){
-    //Aplica el filtro de checkbox y al resultado el filtro search.
+    //Aplica el filtro de checkbox y al resultado, el filtro search.
     let filterCards=filterBySearch(filterByCheckbox());
     //Muestra las cartas filtradas.
     showCards(filterCards);
