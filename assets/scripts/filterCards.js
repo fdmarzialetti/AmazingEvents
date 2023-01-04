@@ -1,7 +1,7 @@
 //Filtra todos los eventos por categoria
 function filterByCheckbox(){
-    let chkContainer = document.querySelectorAll(".btn-check");
-    arrCategories = Array.from(chkContainer).filter(chk=>chk.checked).map(chk=>chk.name)
+    let arrCategories = document.querySelectorAll("input[type=checkbox]:checked")
+    arrCategories = Array.from(arrCategories).map(chk=>chk.name)
     if(arrCategories.length === 0){
         //Si no hay ningun checkbox checked retorna todos los eventos.
         return data['events'];
@@ -33,7 +33,7 @@ function applyFilter(){
 }
 //Agrega un checkbox al template de checkboxes.
 function addCheckboxTemplate(chk){
-    return `<input onchange="applyFilter()" type="checkbox" class="btn-check" id="${chk}" name="${chk}">
+    return `<input type="checkbox" class="btn-check" id="${chk}" name="${chk}">
     <label class="btn btn-outline-danger checkboxSize rounded-2" for="${chk}">${chk}</label>`
 }
 //Crea el template de chekboxes.
@@ -55,9 +55,9 @@ function showCheckbox(){
 
 //Renderiza los checkbox
 showCheckbox()
-let searchBar = document.getElementById("searchBar");
-searchBar.addEventListener("input", applyFilter)
-
+//Agrega escuchador de eventos al searchbar y al grupo de checkboxes.
+document.getElementById("searchBar").addEventListener("input", applyFilter);
+document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
 
 
 
