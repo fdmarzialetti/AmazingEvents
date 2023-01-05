@@ -20,6 +20,9 @@ function createTemplateCards(events){
     let currentDate = data['currentDate'];
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
     let template="";
+    if(events.length===0){
+        return `<div class="mt-3 text-center"><h3>No matches found</h3></div>`;
+    }
     switch(pageName){
         case "Home":{
             for(let e of events){
@@ -46,7 +49,7 @@ function createTemplateCards(events){
     }
 }
 
-function showCards(events){
+function renderCards(events){
     let cardsContainer = document.getElementById("cards-container");
     cardsContainer.innerHTML=createTemplateCards(events);
 }
@@ -55,13 +58,13 @@ function showCards(events){
 
 function filterByCheckbox(){
     let arrCategories = document.querySelectorAll("input[type=checkbox]:checked")
-    arrCategories = Array.from(arrCategories).map(chkCategory=>chkCategory.name)
+    arrCategories = Array.from(arrCategories).map(chkCategory=>chkCategory.value)
     if(arrCategories.length === 0){
         return data['events'];
-    }  else{
-        let filteredEvents = data["events"].filter(event=>arrCategories.includes(event["category"]))
-        return filteredEvents; 
-    }
+    }  
+    let filteredEvents = data["events"].filter(event=>arrCategories.includes(event["category"]))
+    return filteredEvents; 
+    
 }
 
 function filterBySearch(events){
@@ -73,12 +76,12 @@ function filterBySearch(events){
 }
 
 function applyFilter(){
-    showCards(filterBySearch(filterByCheckbox()));
+    renderCards(filterBySearch(filterByCheckbox()));
 }
 
 function addCheckboxTemplate(chk){
-    return `<input type="checkbox" class="btn-check" id="${chk}" name="${chk}">
-    <label class="btn btn-outline-danger checkboxProp rounded-2" for="${chk}">${chk}</label>`
+    return `<input type="checkbox" class="btn-check" id="${chk}" value="${chk}">
+    <label class="checkboxProp btn btn-outline-danger rounded-2" for="${chk}">${chk}</label>`
 }
 
 function createTemplateCheckbox(categories){
@@ -89,16 +92,15 @@ function createTemplateCheckbox(categories){
     return template;
 }
 
-function showCheckbox(){
+function renderCheckbox(){
     let arrCategories=new Set(data["events"].map(e=>e.category))
     let checkboxsContainer=document.getElementsByClassName("btn-group")[0];
     checkboxsContainer.innerHTML=createTemplateCheckbox(arrCategories)
 }
 
-
 //-----------RENDER AND LISTENERS----------------
-showCards(data["events"])
-showCheckbox()
+renderCards(data["events"])
+renderCheckbox()
 document.getElementById("searchBar").addEventListener("input", applyFilter);
 document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
 
