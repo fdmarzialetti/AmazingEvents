@@ -87,7 +87,7 @@ function applyFilter(){
 
 function addCheckboxTemplate(chk){
     return `<input type="checkbox" class="btn-check" id="${chk}" name="${chk}">
-    <label class="btn btn-outline-danger checkboxSize rounded-2" for="${chk}">${chk}</label>`
+    <label class="btn btn-outline-danger checkboxProp rounded-2" for="${chk}">${chk}</label>`
 }
 
 function createTemplateCheckbox(categories){
@@ -107,7 +107,7 @@ function showCheckbox(){
 }
 
 
-//---------RENDER AND LISTENERS-------
+//-----------RENDER AND LISTENERS----------------
 showCards(data["events"])
 showCheckbox()
 document.getElementById("searchBar").addEventListener("input", applyFilter);

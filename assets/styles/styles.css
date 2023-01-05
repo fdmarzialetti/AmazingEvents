@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+:root {
+    --mainColor: #DC3545;
+}
 
 body{
     background-color: rgb(236, 236, 236);
@@ -27,7 +30,7 @@ nav{
 
 .tittle-container{
     width: 100%;
-    background-color: #dc3545;
+    background-color: var(--mainColor);
     color: white;
     height: 6em;
     display: flex;
@@ -57,7 +60,6 @@ main{
 }
 
 .btn-group button{
-    background-color: white;
     transition: none;
 }
 
@@ -69,10 +71,13 @@ form{
     width:100%;
 }
 
-.checkboxSize{
+.checkboxProp{
     word-wrap: break-word;
     background-color: white;
+    border-color: var(--mainColor);
+    color: var(--mainColor);
 }
+
 
 .cards-container{
     width: 100%;
@@ -85,6 +90,7 @@ form{
     height: 25em;
     border: none;
     border: 1px solid rgb(180, 180, 180);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .card-body{
     padding:0 1em 1em 1em;
@@ -101,10 +107,11 @@ form{
 }
 
 .card img{
-    padding: 1em;
+    margin: 1em;
     border-radius: 0 2em;
     height: 12em;
     object-fit:cover;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .card-detail{
@@ -117,7 +124,7 @@ footer{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color:  #dc3545;
+    background-color:  var(--mainColor);
     height: 8em;
     color: white;
     padding: 2em;
@@ -182,12 +189,15 @@ table,th,tr,td{
         justify-content: space-evenly;
         height: 28em;
         padding-top: 2em;
+        padding-bottom: 0.5em;
         
     }
 
     .card-detail img {
-        height: 25em;
-        max-width: 28em;
+        margin-top: 0;
+        padding-bottom: 0;
+        height: 24.2em;
+        width: 40%;
     }
 
     .card-detail .card-body{
