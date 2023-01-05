@@ -1,7 +1,7 @@
 //Filtra todos los eventos por categoria
 function filterByCheckbox(){
     let arrCategories = document.querySelectorAll("input[type=checkbox]:checked")
-    arrCategories = Array.from(arrCategories).map(chk=>chk.name)
+    arrCategories = Array.from(arrCategories).map(chkCategory=>chkCategory.name)
     if(arrCategories.length === 0){
         //Si no hay ningun checkbox checked retorna todos los eventos.
         return data['events'];
@@ -27,9 +27,8 @@ function filterBySearch(events){
 //Aplica las filtros de checkbox y search.
 function applyFilter(){
     //Aplica el filtro de checkbox y al resultado, el filtro search.
-    let filterCards=filterBySearch(filterByCheckbox());
-    //Muestra las cartas filtradas.
-    showCards(filterCards);
+    //y Muestra las cartas filtradas.
+    showCards(filterBySearch(filterByCheckbox()));
 }
 //Agrega un checkbox al template de checkboxes.
 function addCheckboxTemplate(chk){
@@ -61,6 +60,10 @@ document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
 
 //ESTUDIAR
 //  objeto Set();
+
+// location.search
+
+// URLSearchParams().get();
 
 
 
