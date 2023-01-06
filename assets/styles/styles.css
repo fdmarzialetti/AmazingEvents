@@ -28,6 +28,10 @@ nav{
     height: 2em;
 }
 
+.nav-link:hover{
+    color:var(--mainColor);
+}
+
 .tittle-container{
     width: 100%;
     background-color: var(--mainColor);
@@ -59,13 +63,13 @@ main{
     gap:0.2em
 }
 
-.btn-group button{
+/* .btn-group button{
     transition: none;
 }
 
 .btn-group button:checked{
     transition: none;
-}
+} */
 
 form{
     width:100%;
@@ -74,8 +78,12 @@ form{
 .checkboxProp{
     word-wrap: break-word;
     background-color: white;
-    border-color: var(--mainColor);
-    color: var(--mainColor);
+}
+
+
+.checkboxProp:hover{ 
+    transition:0.3s;
+    box-shadow: var(--mainColor)inset 0px -1px 1px;
 }
 
 
@@ -92,6 +100,12 @@ form{
     border: 1px solid rgb(180, 180, 180);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.card:hover{
+    transition:0.4s;
+    transform: scale(1.01);
+}
+
 .card-body{
     padding:0 1em 1em 1em;
 }
@@ -116,6 +130,11 @@ form{
 
 .card-detail{
     height: 40em;
+}
+
+.card-detail:hover{
+    transition:none;
+    transform:none;
 }
 
 
@@ -177,7 +196,9 @@ table,th,tr,td{
     background-color: #246457;
 }
 
-
+.notFoundMsg{
+    color:rgb(49, 49, 49)
+}
 
 @media (min-width:768px){
     footer{

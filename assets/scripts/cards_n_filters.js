@@ -2,7 +2,7 @@
 
 function addCardTemplate(card){
     return `<div class="col col-md-6 col-lg-3">
-                <div class="card">
+                <div class="card mt-0">
                     <img src="${card.image}" alt="${card.name} image">
                     <div class="card-body d-flex flex-column align-items-center justify-content-between">
                         <h5 class="card-title w-100 text-center">${card.name}</h5>
@@ -21,7 +21,7 @@ function createTemplateCards(events){
     let pageName=document.getElementsByTagName('h1')[0].innerHTML;
     let template="";
     if(events.length===0){
-        return `<div class="mt-3 text-center"><h3>No matches found</h3></div>`;
+        return `<div class="notFoundMsg mt-3 text-center"><h3>No matches found</h3></div>`;
     }
     switch(pageName){
         case "Home":{

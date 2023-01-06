@@ -1,12 +1,7 @@
-// traemos la url en forma de string
-let paramUrl= location.search
-// creamos un objeto que tiene las keys:value
-let idCard= new URLSearchParams(paramUrl).get("id");
-
 function showDetails(){
-    //Busco la carta correspondiente por id
+    let paramUrl= location.search
+    let idCard= new URLSearchParams(paramUrl).get("id");
     let card = data["events"].filter(e=>e._id===idCard)[0];
-    //identificar con un ternario si posee assistance o estimated Ternario.
     let asisstanceOrEstimate = card.hasOwnProperty("assistance")?`<p>Assistance: ${card.assistance}</p>`:`<p>Estimate: ${card.estimate}</p>`
     
     return `<div class="col col-lg-10">
