@@ -17,20 +17,20 @@ function addCardTemplate(card){
 }
 
 function createTemplateCards(events){
-    let currentDate = data['currentDate'];
-    let pageName=document.getElementsByTagName('h1')[0].innerHTML;
-    let template="";
     if(events.length===0){
         return `<div class="notFoundMsg mt-3 text-center"><h3>No matches found</h3></div>`;
     }
-    switch(pageName){
-        case "Home":{
+    let currentDate = data['currentDate'];
+    let pageUrl=location.pathname;
+    let template="";
+    switch(pageUrl){
+        case "/index.html":{
             for(let e of events){
                 template+=addCardTemplate(e);
             }
             return template;
         }
-        case "Past Events":{
+        case "/past.html":{
             for(let e of events){
                 if(e.date < currentDate){
                     template+=addCardTemplate(e);
@@ -38,7 +38,7 @@ function createTemplateCards(events){
             }
             return template;
         }
-        case "Upcomming Events":{
+        case "/upcomming.html":{
             for(let e of events){
                 if(e.date >= currentDate){
                     template+=addCardTemplate(e);
