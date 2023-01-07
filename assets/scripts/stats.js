@@ -10,16 +10,16 @@ function typeAudiance(event){
     return event.estimate
 }
 
-function typeEvents(id){
-    switch(id){
+function filterEventsByDate(tbodyId){
+    switch(tbodyId){
         case "upcommingStats":
-            return data["events"].filter(e=>e.hasOwnProperty("estimate"))
+            return data["events"].filter(e=>e.date>=data["currentDate"])
         case "pastStats":
-            return data["events"].filter(e=>e.hasOwnProperty("assistance"))
+            return data["events"].filter(e=>e.date<data["currentDate"])
     }  
 }
 
-function addRowTemplate(item1,item2,item3){
+function rowTemplate(item1,item2,item3){
     return `<tr>
                 <td>${item1}</td>
                 <td>${item2}</td>
@@ -47,7 +47,7 @@ function higherPercentAttendanceTd(){
 
 function fillGeneralTable(){
     let generalStatsTable = document.getElementById("generalStats")
-    generalStatsTable.innerHTML+=addRowTemplate(
+    generalStatsTable.innerHTML+=rowTemplate(
     higherPercentAttendanceTd(),
     lowerPercentAttendanceTd(),
     largerCapacityTd()
@@ -65,14 +65,14 @@ function accumulator(events,categoryObject){
 }
 
 function fillCategoryTable(tbodyContainer){
-    let filteredEvents = typeEvents(tbodyContainer.id)
-    let setCategory= new Set(filteredEvents.map(e=>e.category).sort())
+    let eventsByDate = filterEventsByDate(tbodyContainer.id)
+    let setCategory= new Set(eventsByDate.map(e=>e.category).sort())
     let categoryObject={"category":"","revenue":0,"capacity":0,"persons":0}
-    for(let cat of setCategory){
-        let eventsByCategory = filteredEvents.filter(e=>e.category===cat)
-        categoryObject.category=cat
+    for(let category of setCategory){
+        let eventsByCategory = eventsByDate.filter(e=>e.category===category)
+        categoryObject.category=category
         categoryObject=accumulator(eventsByCategory,categoryObject)
-        tbodyContainer.innerHTML+=addRowTemplate(
+        tbodyContainer.innerHTML+=rowTemplate(
             categoryObject.category,
             categoryObject.revenue,
             `${percent(categoryObject.capacity, categoryObject.persons).toFixed(2)}%`
