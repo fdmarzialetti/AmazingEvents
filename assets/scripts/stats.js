@@ -1,4 +1,4 @@
-//------------------AUX FUNCTIONS---------------
+//------------------AUX FUNCTIONS------------------
 function percent(total,percent){
     return (percent*100)/total;
 }
@@ -27,7 +27,7 @@ function addRowTemplate(item1,item2,item3){
             </tr>`
 }
 
-//-------------GENERAL TABLE FUNCTIONS----------
+//-------------GENERAL TABLE FUNCTIONS-------------
 function largerCapacityTd(){
     let eventLgCap=data["events"].sort((e1,e2)=>e2.capacity-e1.capacity)[0]
     return `${eventLgCap.name} ${eventLgCap.capacity}`
@@ -81,7 +81,7 @@ function fillCategoryTable(tbodyContainer){
     }
 }
 
-//---------------FILL TABLES----------------
+//---------------FILL TABLES-----------------------
 let upcommingTbodyContainer = document.getElementById("upcommingStats")
 let pastTbodyContainer = document.getElementById("pastStats")
 fillGeneralTable()
