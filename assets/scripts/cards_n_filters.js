@@ -38,7 +38,7 @@ function createTemplateCards(events){
             }
             return template;
         }
-        case "Upcoming Events":{
+        case "Upcomming Events":{
             for(let e of events){
                 if(e.date >= currentDate){
                     template+=addCardTemplate(e);
