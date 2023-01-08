@@ -74,14 +74,7 @@ function filterBySearch(events){
     return events
 }
 
-function applyFilter(){
-    fetch(url)
-    .then(response=>response.json())
-    .then(data=>{
-        renderCards(filterBySearch(filterByCheckbox(data)),data.currentDate);
-    })
-    .catch(err=>console.error(err)) 
-}
+
 
 function addCheckboxTemplate(chk){
     return `<input type="checkbox" class="btn-check" id="${chk}" value="${chk}">
@@ -109,10 +102,14 @@ fetch(url)
     .then(data=>{
         renderCards(data.events,data.currentDate)
         renderCheckbox(data)
+        function applyFilter(){
+            renderCards(filterBySearch(filterByCheckbox(data)),data.currentDate);
+        }
+        document.getElementById("searchBar").addEventListener("input", applyFilter);
+        document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
     })
-    .catch(err=>console.error(err))
-document.getElementById("searchBar").addEventListener("input", applyFilter);
-document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
+    .catch(err=>console.error(err)) 
+
 
 
 
