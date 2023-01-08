@@ -10,7 +10,7 @@ function typeAudiance(event){
     return event.estimate
 }
 
-function filterEventsByDate(tbodyId){
+function filterEventsByDate(tbodyId,data){
     switch(tbodyId){
         case "upcommingStats":
             return data["events"].filter(e=>e.date>=data["currentDate"])
@@ -28,29 +28,29 @@ function rowTemplate(item1,item2,item3){
 }
 
 //-------------GENERAL TABLE FUNCTIONS-------------
-function largerCapacityTd(){
+function largerCapacityTd(data){
     let eventLgCap=data["events"].sort((e1,e2)=>e2.capacity-e1.capacity)[0]
     return `${eventLgCap.name} ${eventLgCap.capacity}`
 }
 
-function lowerPercentAttendanceTd(){
+function lowerPercentAttendanceTd(data){
     let eventlwPerAtt=data["events"]
     .sort((e1,e2)=>percent(e1.capacity,typeAudiance(e1))-percent(e2.capacity,typeAudiance(e2)))[0]
     return `${eventlwPerAtt.name} ${percent(eventlwPerAtt.capacity, typeAudiance(eventlwPerAtt)).toFixed(2)}%`
 }
 
-function higherPercentAttendanceTd(){
+function higherPercentAttendanceTd(data){
     let eventhgPerAtt=data["events"]
     .sort((e1,e2)=>percent(e2.capacity,typeAudiance(e2))-percent(e1.capacity,typeAudiance(e1)))[0]
     return `${eventhgPerAtt.name} ${percent(eventhgPerAtt.capacity, typeAudiance(eventhgPerAtt)).toFixed(2)}%`
 }
 
-function fillGeneralTable(){
+function fillGeneralTable(data){
     let generalStatsTable = document.getElementById("generalStats")
     generalStatsTable.innerHTML+=rowTemplate(
-    higherPercentAttendanceTd(),
-    lowerPercentAttendanceTd(),
-    largerCapacityTd()
+    higherPercentAttendanceTd(data),
+    lowerPercentAttendanceTd(data),
+    largerCapacityTd(data)
     )
 }
 
@@ -64,8 +64,8 @@ function accumulator(events,categoryObject){
     return categoryObject
 }
 
-function fillCategoryTable(tbodyContainer){
-    let eventsByDate = filterEventsByDate(tbodyContainer.id)
+function fillCategoryTable(tbodyContainer,data){
+    let eventsByDate = filterEventsByDate(tbodyContainer.id,data)
     let setCategory= new Set(eventsByDate.map(e=>e.category).sort())
     let categoryObject={"category":"","revenue":0,"capacity":0,"persons":0}
     for(let category of setCategory){
@@ -82,8 +82,15 @@ function fillCategoryTable(tbodyContainer){
 }
 
 //---------------FILL TABLES-----------------------
-let upcommingTbodyContainer = document.getElementById("upcommingStats")
-let pastTbodyContainer = document.getElementById("pastStats")
-fillGeneralTable()
-fillCategoryTable(upcommingTbodyContainer)
-fillCategoryTable(pastTbodyContainer)
+let url = "https://mindhub-xj03.onrender.com/api/amazing";
+fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        let upcommingTbodyContainer = document.getElementById("upcommingStats")
+        let pastTbodyContainer = document.getElementById("pastStats")
+        fillGeneralTable(data)
+        fillCategoryTable(upcommingTbodyContainer,data)
+        fillCategoryTable(pastTbodyContainer,data)
+    })
+    .catch(err=>console.error(err))
+

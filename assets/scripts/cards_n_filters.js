@@ -16,11 +16,10 @@ function addCardTemplate(card){
             </div>`
 }
 
-function createTemplateCards(events){
-    if(events.length===0){
+function createTemplateCards(events,currentDate){
+    if(!events.length){
         return `<div class="notFoundMsg mt-3 text-center"><h3>No matches found</h3></div>`;
     }
-    let currentDate = data['currentDate'];
     let pageTittle=document.getElementsByTagName("h1")[0].innerText;
     let template="";
     switch(pageTittle){
@@ -49,20 +48,20 @@ function createTemplateCards(events){
     }
 }
 
-function renderCards(events){
+function renderCards(events,currentDate){
     let cardsContainer = document.getElementById("cards-container");
-    cardsContainer.innerHTML=createTemplateCards(events);
+    cardsContainer.innerHTML=createTemplateCards(events,currentDate);
 }
 
 //-----------CHECKBOX/SEARCH FUNCTIONS---------
 
-function filterByCheckbox(){
+function filterByCheckbox(data){
     let arrCategories = document.querySelectorAll("input[type=checkbox]:checked")
     arrCategories = Array.from(arrCategories).map(chkCategory=>chkCategory.value)
-    if(arrCategories.length === 0){
-        return data['events'];
+    if(!arrCategories.length){
+        return data.events;
     }  
-    let filteredEvents = data["events"].filter(event=>arrCategories.includes(event["category"]))
+    let filteredEvents = data.events.filter(event=>arrCategories.includes(event["category"]))
     return filteredEvents; 
     
 }
@@ -76,7 +75,12 @@ function filterBySearch(events){
 }
 
 function applyFilter(){
-    renderCards(filterBySearch(filterByCheckbox()));
+    fetch(url)
+    .then(response=>response.json())
+    .then(data=>{
+        renderCards(filterBySearch(filterByCheckbox(data)),data.currentDate);
+    })
+    .catch(err=>console.error(err)) 
 }
 
 function addCheckboxTemplate(chk){
@@ -92,18 +96,23 @@ function createTemplateCheckbox(categories){
     return template;
 }
 
-function renderCheckbox(){
-    let arrCategories=new Set(data["events"].map(e=>e.category))
+function renderCheckbox(data){
+    let arrCategories=new Set(data.events.map(e=>e.category))
     let checkboxsContainer=document.getElementsByClassName("btn-group")[0];
     checkboxsContainer.innerHTML=createTemplateCheckbox(arrCategories)
 }
 
 //-----------RENDER AND LISTENERS----------------
-renderCards(data["events"])
-renderCheckbox()
+let url = "https://mindhub-xj03.onrender.com/api/amazing";
+fetch(url)
+    .then(response=>response.json())
+    .then(data=>{
+        renderCards(data.events,data.currentDate)
+        renderCheckbox(data)
+    })
+    .catch(err=>console.error(err))
 document.getElementById("searchBar").addEventListener("input", applyFilter);
 document.getElementById("checkboxGroup").addEventListener("change",applyFilter);
-
 
 
 
