@@ -4,10 +4,7 @@ function percent(total,percent){
 }
 
 function typeAudiance(event){
-    if(event.hasOwnProperty("assistance")){
-        return event.assistance
-    }
-    return event.estimate
+    return event.estimate?event.estimate:event.assistance
 }
 
 function filterEventsByDate(tbodyId,data){
@@ -59,26 +56,24 @@ function accumulator(events,categoryObject){
     events.forEach(e => {
         categoryObject.revenue+=e.price*typeAudiance(e)
         categoryObject.capacity+=e.capacity
-        categoryObject.persons+=typeAudiance(e)
+        categoryObject.audience+=typeAudiance(e)
     });
     return categoryObject
 }
 
 function fillCategoryTable(tbodyContainer,data){
     let eventsByDate = filterEventsByDate(tbodyContainer.id,data)
-    let setCategory= new Set(eventsByDate.map(e=>e.category).sort())
-    let categoryObject={"category":"","revenue":0,"capacity":0,"persons":0}
-    for(let category of setCategory){
-        let eventsByCategory = eventsByDate.filter(e=>e.category===category)
-        categoryObject.category=category
-        categoryObject=accumulator(eventsByCategory,categoryObject)
+    let setCategory= Array.from(new Set(eventsByDate.map(e=>e.category).sort()))
+    let accumObject
+    setCategory.forEach(category=>{
+        accumObject={"revenue":0,"capacity":0,"audience":0}
+        accumObject=accumulator(eventsByDate.filter(e=>e.category===category), accumObject)
         tbodyContainer.innerHTML+=rowTemplate(
-            categoryObject.category,
-            `$${categoryObject.revenue}`,
-            `${percent(categoryObject.capacity, categoryObject.persons).toFixed(2)}%`
+            category,
+            `$${accumObject.revenue}`,
+            `${percent(accumObject.capacity, accumObject.audience).toFixed(2)}%`
             )
-        categoryObject={"category":"","revenue":0,"capacity":0,"persons":0}
-    }
+    })
 }
 
 //---------------FILL TABLES-----------------------
