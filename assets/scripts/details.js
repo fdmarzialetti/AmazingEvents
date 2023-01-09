@@ -24,7 +24,7 @@ fetch(url)
                 </div>
                 <div class=" card-bottom d-flex justify-content-between align-items-center w-100">
                     <p class="fw-bold text-align-center m-0">Pirce $${card.price}</p>
-                    <a href="./index.html" class="btn btn-danger">Back</a>
+                    <a href="./index.html" class="btn btn-danger">Back Home</a>
                 </div>
             </div>
         </div>

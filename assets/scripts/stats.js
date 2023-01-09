@@ -4,7 +4,7 @@ function percent(total,percent){
 }
 
 function typeAudiance(event){
-    return event.estimate?event.estimate:event.assistance
+    return event.estimate??event.assistance
 }
 
 function filterEventsByDate(tbodyId,data){
