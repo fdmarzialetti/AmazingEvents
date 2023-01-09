@@ -74,7 +74,7 @@ function fillCategoryTable(tbodyContainer,data){
         categoryObject=accumulator(eventsByCategory,categoryObject)
         tbodyContainer.innerHTML+=rowTemplate(
             categoryObject.category,
-            categoryObject.revenue,
+            `$${categoryObject.revenue}`,
             `${percent(categoryObject.capacity, categoryObject.persons).toFixed(2)}%`
             )
         categoryObject={"category":"","revenue":0,"capacity":0,"persons":0}
