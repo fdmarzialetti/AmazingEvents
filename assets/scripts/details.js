@@ -6,7 +6,7 @@ fetch(url)
         let paramUrl= location.search
         let idCard= new URLSearchParams(paramUrl).get("id");
         let card = data["events"].filter(e=>e._id===idCard)[0];
-        let asisstanceOrEstimate = card.hasOwnProperty("assistance")?`<p>Assistance: ${card.assistance}</p>`:`<p>Estimate: ${card.estimate}</p>`
+        let asisstanceOrEstimate = card.assistance?`<p>Assistance: ${card.assistance}</p>`:`<p>Estimate: ${card.estimate}</p>`
         
         return `<div class="col col-lg-10">
         <div class="card card-detail">
