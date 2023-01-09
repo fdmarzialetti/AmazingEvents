@@ -27,19 +27,19 @@ function rowTemplate(item1,item2,item3){
 //-------------GENERAL TABLE FUNCTIONS-------------
 function largerCapacityTd(data){
     let eventLgCap=data["events"].sort((e1,e2)=>e2.capacity-e1.capacity)[0]
-    return `${eventLgCap.name} ${eventLgCap.capacity}`
+    return `${eventLgCap.name}: ${eventLgCap.capacity}`
 }
 
 function lowerPercentAttendanceTd(data){
     let eventlwPerAtt=data["events"]
     .sort((e1,e2)=>percent(e1.capacity,typeAudiance(e1))-percent(e2.capacity,typeAudiance(e2)))[0]
-    return `${eventlwPerAtt.name} ${percent(eventlwPerAtt.capacity, typeAudiance(eventlwPerAtt)).toFixed(2)}%`
+    return `${eventlwPerAtt.name}: ${percent(eventlwPerAtt.capacity, typeAudiance(eventlwPerAtt)).toFixed(2)}%`
 }
 
 function higherPercentAttendanceTd(data){
     let eventhgPerAtt=data["events"]
     .sort((e1,e2)=>percent(e2.capacity,typeAudiance(e2))-percent(e1.capacity,typeAudiance(e1)))[0]
-    return `${eventhgPerAtt.name} ${percent(eventhgPerAtt.capacity, typeAudiance(eventhgPerAtt)).toFixed(2)}%`
+    return `${eventhgPerAtt.name}: ${percent(eventhgPerAtt.capacity, typeAudiance(eventhgPerAtt)).toFixed(2)}%`
 }
 
 function fillGeneralTable(data){
@@ -52,26 +52,26 @@ function fillGeneralTable(data){
 }
 
 //------PAST AND UPCOMMING TABLES FUNCTIONS--------
-function accumulator(events,accumObject){
+function accumulator(events,accum){
     events.forEach(e => {
-        accumObject.revenue+=e.price*typeAudiance(e)
-        accumObject.percentArray.push(percent(e.capacity,typeAudiance(e)))
+        accum.revenue+=e.price*typeAudiance(e)
+        accum.percentArray.push(percent(e.capacity,typeAudiance(e)))
     });
-    return accumObject
+    return accum
 }
 
 function fillCategoryTable(tbodyContainer,data){
     let eventsByDate = filterEventsByDate(tbodyContainer.id,data)
     let setCategory= Array.from(new Set(eventsByDate.map(e=>e.category).sort()))
-    let accumObject
+    let accum
     setCategory.forEach(category=>{
-        accumObject={"revenue":0,"percentArray":[]}
-        accumObject=accumulator(eventsByDate.filter(e=>e.category===category), accumObject)
-        let percentTotal= accumObject.percentArray.reduce((accum, percent) => accum + percent, 0);
+        accum={"revenue":0,"percentArray":[]}
+        accum=accumulator(eventsByDate.filter(e=>e.category===category), accum)
+        let percentTotal= accum.percentArray.reduce((accum, percent) => accum + percent, 0);
         tbodyContainer.innerHTML+=rowTemplate(
             category,
-            `$${accumObject.revenue}`,
-            `${(percentTotal/accumObject.percentArray.length).toFixed(2)}%`
+            `$${accum.revenue}`,
+            `${(percentTotal/accum.percentArray.length).toFixed(2)}%`
             )
     })
 }
