@@ -52,13 +52,12 @@ function fillGeneralTable(data){
 }
 
 //------PAST AND UPCOMMING TABLES FUNCTIONS--------
-function accumulator(events,categoryObject){
+function accumulator(events,accumObject){
     events.forEach(e => {
-        categoryObject.revenue+=e.price*typeAudiance(e)
-        categoryObject.capacity+=e.capacity
-        categoryObject.audience+=typeAudiance(e)
+        accumObject.revenue+=e.price*typeAudiance(e)
+        accumObject.percentArray.push(percent(e.capacity,typeAudiance(e)))
     });
-    return categoryObject
+    return accumObject
 }
 
 function fillCategoryTable(tbodyContainer,data){
@@ -66,18 +65,20 @@ function fillCategoryTable(tbodyContainer,data){
     let setCategory= Array.from(new Set(eventsByDate.map(e=>e.category).sort()))
     let accumObject
     setCategory.forEach(category=>{
-        accumObject={"revenue":0,"capacity":0,"audience":0}
+        accumObject={"revenue":0,"percentArray":[]}
         accumObject=accumulator(eventsByDate.filter(e=>e.category===category), accumObject)
+        let percentTotal= accumObject.percentArray.reduce((accum, percent) => accum + percent, 0);
         tbodyContainer.innerHTML+=rowTemplate(
             category,
             `$${accumObject.revenue}`,
-            `${percent(accumObject.capacity, accumObject.audience).toFixed(2)}%`
+            `${(percentTotal/accumObject.percentArray.length).toFixed(2)}%`
             )
     })
 }
 
 //---------------FILL TABLES-----------------------
 let url = "https://mindhub-xj03.onrender.com/api/amazing";
+
 fetch(url)
     .then(response => response.json())
     .then(data => {
