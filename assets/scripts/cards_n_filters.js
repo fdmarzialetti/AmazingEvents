@@ -74,8 +74,6 @@ function filterBySearch(events){
     return events
 }
 
-
-
 function addCheckboxTemplate(chk){
     return `<input type="checkbox" class="btn-check" id="${chk}" value="${chk}">
     <label class="checkboxProp btn btn-outline-danger rounded-2" for="${chk}">${chk}</label>`
