@@ -29,6 +29,7 @@ nav{
 }
 
 .nav-link:hover{
+    transition: 0.3s;
     color:var(--mainColor);
 }
 
@@ -103,7 +104,7 @@ form{
 
 .card:hover{
     transition:0.4s;
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .card-body{
