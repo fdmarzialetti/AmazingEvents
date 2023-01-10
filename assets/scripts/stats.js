@@ -65,8 +65,7 @@ function fillCategoryTable(tbodyContainer,data){
     let setCategory= Array.from(new Set(eventsByDate.map(e=>e.category).sort()))
     let accum
     setCategory.forEach(category=>{
-        accum={"revenue":0,"percentArray":[]}
-        accum=accumulator(eventsByDate.filter(e=>e.category===category), accum)
+        accum=accumulator(eventsByDate.filter(e=>e.category===category), {"revenue":0,"percentArray":[]})
         let percentTotal= accum.percentArray.reduce((accum, percent) => accum + percent, 0);
         tbodyContainer.innerHTML+=rowTemplate(
             category,
