@@ -52,8 +52,8 @@ function fillGeneralTable(data){
 }
 
 //------PAST AND UPCOMMING TABLES FUNCTIONS--------
-function accumulator(events,accum){
-    events.forEach(e => {
+function accumulator(eventList,accum){
+    eventList.forEach(e => {
         accum.revenue+=e.price*typeAudiance(e)
         accum.percentArray.push(percent(e.capacity,typeAudiance(e)))
     });
@@ -63,9 +63,8 @@ function accumulator(events,accum){
 function fillCategoryTable(tbodyContainer,data){
     let eventsByDate = filterEventsByDate(tbodyContainer.id,data)
     let setCategory= Array.from(new Set(eventsByDate.map(e=>e.category).sort()))
-    let accum
     setCategory.forEach(category=>{
-        accum=accumulator(eventsByDate.filter(e=>e.category===category), {"revenue":0,"percentArray":[]})
+        let accum=accumulator(eventsByDate.filter(e=>e.category===category), {"revenue":0,"percentArray":[]})
         let percentTotal= accum.percentArray.reduce((accum, percent) => accum + percent, 0);
         tbodyContainer.innerHTML+=rowTemplate(
             category,
